@@ -113,6 +113,30 @@ const routes: Routes = [
         loadComponent: () => import('./pages/ebd-control/classroom-details/classroom-details.component').then(m => m.ClassroomDetailsComponent),
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['admin','ebd']}
+      },
+
+
+
+
+
+
+      {
+        path: 'posts/post-details/:id',
+        loadComponent: () => import('./pages/posts/post-detail/post-detail.component').then(m => m.PostDetailComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['admin']}
+      },
+      {
+        path: 'posts/new',
+        loadComponent: () => import('./pages/posts/new-post/new-post.component').then(m => m.NewPostComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['admin']}
+      },
+      {
+        path: 'posts/list',
+        loadComponent: () => import('./pages/posts/post-list/post-list.component').then(m => m.PostListComponent),
+        canActivate: [AuthGuard, RoleGuard],
+        data: { roles: ['admin']}
       }
     ]
   },

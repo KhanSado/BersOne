@@ -32,6 +32,47 @@ export const NavigationItems: NavigationItem[] = [
         url: '/home',
         icon: 'feather icon-home'
       },
+
+
+      // {
+      //   path: 'posts/post-details/:id',
+      //   loadComponent: () => import('./pages/posts/post-detail/post-detail.component').then(m => m.PostDetailComponent),
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: { roles: ['admin']}
+      // },
+      // {
+      //   path: 'posts/new',
+      //   loadComponent: () => import('./pages/posts/new-post/new-post.component').then(m => m.NewPostComponent),
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: { roles: ['admin']}
+      // },
+      // {
+      //   path: 'posts/list',
+      //   loadComponent: () => import('./pages/posts/post-list/post-list.component').then(m => m.PostListComponent),
+      //   canActivate: [AuthGuard, RoleGuard],
+      //   data: { roles: ['admin']}
+      // }
+
+      {
+                id: 'posts',
+                title: 'Postagens',
+                type: 'collapse',
+                icon: 'feather icon-clipboard',
+                children: [
+                  {
+                    id: 'posts-list',
+                    title: 'Posts',
+                    type: 'item',
+                    url: '/posts/list'
+                  },
+                  {
+                    id: 'post-new',
+                    title: 'Novo Post',
+                    type: 'item',
+                    url: '/posts/new'
+                  }
+                ]
+              }
       // {
       //   id: 'anuncio',
       //   title: 'Anúnciar',
