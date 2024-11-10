@@ -63,13 +63,13 @@ export const NavigationItems: NavigationItem[] = [
                     id: 'posts-list',
                     title: 'Posts',
                     type: 'item',
-                    url: '/posts/list'
+                    url: '/admin/posts/list'
                   },
                   {
                     id: 'post-new',
                     title: 'Novo Post',
                     type: 'item',
-                    url: '/posts/new'
+                    url: '/admin/posts/new'
                   }
                 ]
               }

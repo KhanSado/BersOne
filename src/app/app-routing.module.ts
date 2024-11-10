@@ -121,19 +121,19 @@ const routes: Routes = [
 
 
       {
-        path: 'posts/post-details/:id',
+        path: 'admin/posts/post-details/:id',
         loadComponent: () => import('./pages/posts/post-detail/post-detail.component').then(m => m.PostDetailComponent),
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['admin']}
       },
       {
-        path: 'posts/new',
+        path: 'admin/posts/new',
         loadComponent: () => import('./pages/posts/new-post/new-post.component').then(m => m.NewPostComponent),
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['admin']}
       },
       {
-        path: 'posts/list',
+        path: 'admin/posts/list',
         loadComponent: () => import('./pages/posts/post-list/post-list.component').then(m => m.PostListComponent),
         canActivate: [AuthGuard, RoleGuard],
         data: { roles: ['admin']}
@@ -145,32 +145,22 @@ const routes: Routes = [
     component: GuestComponent,
     children: [
       {
-        path: 'auth/signup',
+        path: 'admin/auth/signup',
         loadComponent: () => import('./pages/authentication/sign-up/sign-up.component')
       },
       {
-        path: 'auth/signin',
+        path: 'admin/auth/signin',
         loadComponent: () => import('./pages/authentication/sign-in/sign-in.component')
       },
+
+      //public
       {
-        path: 'profissionais',
-        loadComponent: () => import('./public-pages/public-announcements/public-announcements.component').then(m => m.PublicAnnouncementsComponent)
+        path: 'blog/post/read/:id',
+        loadComponent: () => import('./public-pages/posts/post/post.component').then(m => m.PostComponent)
       },
       {
-        path: 'resources',
-        loadComponent: () => import('./public-pages/resources/resources.component').then(m => m.ResourcesComponent)
-      },
-      // {
-      //   path: 'elections/saf',
-      //   loadComponent: () => import('./public-pages/elections/saf/saf.component').then(m => m.SafComponent)
-      // },
-      // {
-      //   path: 'elections/uph',
-      //   loadComponent: () => import('./public-pages/elections/uph/uph.component').then(m => m.UphComponent)
-      // }
-      {
-        path: 'elections/upa',
-        loadComponent: () => import('./public-pages/elections/upa/upa.component').then(m => m.UpaComponent)
+        path: 'blog/home',
+        loadComponent: () => import('./public-pages/posts/posts-list/posts-list.component').then(m => m.PostsListComponent)
       }
     ]
   }

@@ -1,0 +1,23 @@
+   <div class="col-xl-12">
+    <app-card cardTitle="Blog" [options]="false" blockClass="table-border-style">
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let post of posts">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title">{{ post.title }}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ limitWords(post.content,15)}}</p>
+                <p class="card-text">Por: {{ post.autor }} categoria: {{post.category}}</p>
+              <button class="btn btn-light-primary" (click)="showDetails(post.id)">Ler mais</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="hasMoreCults" class="text-center mt-4">
+        <button class="btn btn-primary" (click)="loadMoreCults(5)">Mais</button>
+      </div>
+    </app-card>
+  </div>
+  
