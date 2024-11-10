@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/auth/signin',
+        redirectTo: '/blog/home',
         pathMatch: 'full'
       },
       {
