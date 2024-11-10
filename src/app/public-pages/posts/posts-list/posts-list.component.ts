@@ -24,6 +24,11 @@ export class PostsListComponent implements OnInit{
   posts: Post[] = [];
   post: Post | undefined;
 
+  filteredPosts: Post[] = [];
+  categories = ['Quadrinhos', 'Tecnologia'];
+  selectedCategory: string | null = null; // Armazena a categoria selecionada
+
+
   constructor(private service: PublicPostsService, private router: Router) { }
 
   ngOnInit(): void {
@@ -33,16 +38,17 @@ export class PostsListComponent implements OnInit{
 
   async findCults(limit: number = 5) {
     try {
-      // Chama o serviço para buscar os cultos com paginação
       const { documents, lastVisible } = await this.service.findData(this.lastVisible, limit);
-
       if (documents && documents.length > 0) {
-        this.posts = [...this.posts, ...documents]; // Adiciona os novos cultos à lista existente
-        this.lastVisible = lastVisible; // Atualiza o último documento visível para paginação
-        this.hasMoreCults = true; // Existem mais cultos
+        this.posts = [...this.posts, ...documents];
+        this.lastVisible = lastVisible;
+        
+        // Atualiza `filteredPosts` para exibir os últimos 6 posts de todas as categorias se nenhuma categoria for selecionada
+        this.updateFilteredPosts();
+        this.hasMoreCults = true;
       } else {
         console.log('Nenhum documento encontrado');
-        this.hasMoreCults = false; // Não há mais cultos para carregar
+        this.hasMoreCults = false;
       }
     } catch (error) {
       console.error('Erro ao buscar documentos:', error);
@@ -72,4 +78,20 @@ export class PostsListComponent implements OnInit{
     const words = content.split(' ');
     return words.length > limit ? words.slice(0, limit).join(' ') + '...' : content;
   }
+
+  filterByCategory(category: string): void {
+    this.filteredPosts = this.posts.filter(post => post.category === category);
+  }
+
+  updateFilteredPosts() {
+    if (this.selectedCategory) {
+      // Se houver uma categoria selecionada, filtra os posts para mostrar apenas os dessa categoria
+      this.filteredPosts = this.posts.filter(post => post.category === this.selectedCategory);
+    } else {
+      // Caso contrário, mostra os 6 posts mais recentes de qualquer categoria
+      this.filteredPosts = this.posts.slice(-6);
+    }
+  }
+
+
 }
