@@ -1,0 +1,32 @@
+/* Estilos personalizados para o título */
+#header-title {
+    font-size: 3rem;
+    color: #ffdd57; /* Cor vibrante para destaque */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    font-weight: bold; /* Negrito para aumentar a presença */
+    text-transform: uppercase; /* Maiúsculas para dar mais impacto */
+  }
+  
+  /* Espaçamento entre elementos do navbar */
+  .navbar-nav .nav-item {
+    margin-left: 1rem;
+  }
+  
+  /* Texto centralizado e espaçado no footer */
+  footer p {
+    margin: 0;
+  }
+  
+  /* Ajuste de altura para ocupar a tela toda */
+  .container-fluid {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Centralizar conteúdo dos posts */
+  .blog-content {
+    margin-top: 1rem;
+  }
+  

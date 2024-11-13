@@ -1,17 +1,24 @@
 <app-blog-layout>
-  <div class="col-md-4 mb-4" *ngFor="let post of filteredPosts">
-    <div class="card h-100">
-      <div class="card-header bg-primary text-white">
-        <h5 class="card-title">{{ post.title }}</h5>
-      </div>
-      <div class="card-body">
-          <p class="card-text">{{ limitWords(post.content, 20) }}</p>
-          <p class="card-text">Por: {{ post.autor }} | Categoria: {{ post.category }}</p>
-        <button class="btn btn-light-primary" (click)="showDetails(post.id)">Ler mais</button>
+  <main class="container blog-content flex-grow-1">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let post of filteredPosts">
+        <div class="card h-100 shadow-lg border-light rounded">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title text-uppercase font-weight-bold" style="font-size: 1.5rem; letter-spacing: 1px; color: #ffdd57; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+              {{ post.title }}
+            </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text text-muted" style="font-size: 1rem;">{{ limitWords(post.content, 20) }}...</p>
+            <p class="card-text text-muted small">Por: <strong>{{ post.autor }}</strong> | Categoria: {{ post.category }}</p>
+            <button class="btn btn-primary mt-3 w-100" (click)="showDetails(post.id)">Ler mais</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>  
-  <div class="text-center mt-4">
-    <button class="btn btn-primary btn-lg" (click)="loadMorePosts(5)">Carregar mais</button>
-  </div>
+    
+    <div class="text-center mt-4">
+      <button class="btn btn-secondary btn-lg" (click)="loadMorePosts(5)">Carregar mais</button>
+    </div>
+  </main>  
 </app-blog-layout>
