@@ -1,60 +1,25 @@
-<div class="container-fluid">
-    <!-- Header -->
-    <header class="bg-dark text-white py-3">
-      <div class="container">
-        <h1 class="display-4">BersONE</h1>
-      </div>
-    </header>
-  
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="#">Blog Logo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/blog/home">Início</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/about">Sobre</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/categories">Categorias</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/contact">Contato</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
-  
-    <!-- Blog Posts Section -->
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-xl-12">
-          <app-card cardTitle="Últimas Postagens" [options]="false" blockClass="table-border-style">
-            <h1>{{post?.title}}</h1>
-            Escrito por <h4>{{post?.autor}}</h4> e publicado em {{post?.data}}
-            
-            <h3>{{post?.category}}</h3>
-            
-            <p>{{post?.content}}</p>
-          </app-card>
-        </div>
+  <app-blog-layout>
+    <div class="container my-5 blog-post">
+      <!-- Título do Post -->
+      <h1 class="display-5 fw-bold mb-3">{{ post?.title }}</h1>
+      
+      <!-- Informações sobre o autor e data -->
+      <div class="post-meta text-muted mb-4">
+        <span class="me-2">Escrito por <strong>{{ post?.autor }}</strong></span>
+        |
+        <span class="ms-2">Publicado em {{ post?.data }}</span>
+      </div>
+      
+      <!-- Categoria do Post -->
+      <div class="post-category bg-light p-2 rounded-3 d-inline-block mb-4">
+        <h5 class="mb-0 text-primary">{{ post?.category }}</h5>
+      </div>
+      
+      <!-- Conteúdo do Post -->
+      <div class="post-content">
+        <p class="fs-5 lh-lg">{{ post?.content }}</p>
       </div>
     </div>
-  
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-      <div class="container text-center">
-        <p>&copy; 2024 Blog. Todos os direitos reservados.</p>
-        <p><a href="#" class="text-light">Política de Privacidade</a> | <a href="#" class="text-light">Termos de Serviço</a></p>
-      </div>
-    </footer>
-  </div>
-  
+    
+  </app-blog-layout>

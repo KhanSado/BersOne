@@ -1,0 +1,32 @@
+/* Estilo geral do blog post */
+.blog-post {
+    border-bottom: 1px solid #e9ecef; /* Linha sutil ao final */
+    padding-bottom: 2rem;
+  }
+  
+  /* Título */
+  .blog-post h1 {
+    font-family: 'Merriweather', serif; /* Fonte serifada para o título */
+    color: #343a40;
+  }
+  
+  /* Metadados do post */
+  .post-meta {
+    font-size: 0.9rem;
+    color: #6c757d; /* Cinza para meta-informação */
+  }
+  
+  /* Categoria */
+  .post-category {
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    color: #007bff;
+  }
+  
+  /* Conteúdo */
+  .post-content p {
+    color: #495057; /* Texto principal em cinza escuro */
+    line-height: 1.8;
+    font-size: 1.125rem; /* Tamanho confortável para leitura */
+  }
+  

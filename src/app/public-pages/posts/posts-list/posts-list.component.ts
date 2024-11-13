@@ -6,11 +6,12 @@ import { Post } from 'src/app/models/Post';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
 import firebase from 'firebase/compat/app';
+import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
 
 @Component({
   selector: 'app-posts-list',
   standalone: true,
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, BlogLayoutComponent],
   templateUrl: './posts-list.component.html',
   styleUrl: './posts-list.component.scss'
 })
@@ -55,7 +56,7 @@ export class PostsListComponent implements OnInit{
     }
   }
 
-  async loadMoreCults(limit: number) {
+  async loadMorePosts(limit: number) {
     try {
       if (this.lastVisible) {
         await this.findCults(limit);

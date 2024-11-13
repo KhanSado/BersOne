@@ -8,11 +8,12 @@ import { CultControlService } from 'src/app/pages/cult-control/service/cult-cont
 import { PostService } from 'src/app/pages/posts/post-service.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
+import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, BlogLayoutComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
