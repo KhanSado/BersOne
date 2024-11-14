@@ -9,6 +9,7 @@ import { PostService } from 'src/app/pages/posts/post-service.service';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
 import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
 
 @Component({
   selector: 'app-post',
@@ -23,12 +24,21 @@ export class PostComponent implements OnInit {
   post: Post | undefined;
   cards: Card[] = [];
 
-  constructor(private route: ActivatedRoute, private service: PublicPostsService) {
+  constructor(private route: ActivatedRoute, private service: PublicPostsService,  private analytics: AngularFireAnalytics) {
   }
+
+  trackPageView(postId: string): void {
+    this.analytics.logEvent('screen_view', {
+      screen_name: `Post${postId}`,
+      screen_class: `PostComponent`
+    });
+  }
+
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') ?? '';
     console.log('ID:', this.id);
     this.showDetails(this.id)
+    this.trackPageView(this.id)
   }
 
   async showDetails(id: string) {

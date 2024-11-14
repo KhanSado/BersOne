@@ -25,6 +25,8 @@ import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire/compat/analytics';
+
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpClientModule } from '@angular/common/http';
@@ -50,28 +52,23 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     BrowserModule,
-
     CommonModule,
-
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-
+    AngularFireAnalyticsModule,  // Adiciona o módulo de Analytics
     SweetAlert2Module.forRoot(),
-    SweetAlert2Module,
-    SweetAlert2Module.forChild({ /* options */ }),
-
     NgApexchartsModule,
-
     AppRoutingModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService  // Rastreia automaticamente as mudanças de tela
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

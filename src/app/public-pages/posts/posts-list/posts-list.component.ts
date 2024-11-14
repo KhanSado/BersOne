@@ -7,6 +7,8 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
 import firebase from 'firebase/compat/app';
 import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
+import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
+
 
 @Component({
   selector: 'app-posts-list',
@@ -27,12 +29,21 @@ export class PostsListComponent implements OnInit {
   selectedCategory: string = '';  // Categoria selecionada
   isDropdownOpen: boolean = false;
 
-  constructor(private service: PublicPostsService, private router: Router) { }
+  constructor(private service: PublicPostsService, private router: Router, private analytics: AngularFireAnalytics) { }
 
   ngOnInit(): void {
+    this.trackPageView()
     this.findPosts(); // Carrega posts ao inicializar o componente
   }
 
+
+  trackPageView(): void {
+    this.analytics.logEvent('screen_view', {
+      screen_name: 'Blog Home',
+      screen_class: 'PostsListComponent'
+    });
+  }
+  
   // Método para buscar posts
   async findPosts(limit: number = 6) {
     try {
