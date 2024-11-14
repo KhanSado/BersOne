@@ -21,4 +21,6 @@ export class BlogLayoutComponent {
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
+
+  currentYear: number = new Date().getFullYear();
 }

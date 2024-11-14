@@ -65,3 +65,40 @@
     }
   }
   
+/* Ajuste para o contêiner de posts */
+.row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Estilo para o botão "Carregar mais" */
+.load-more-container {
+  text-align: center;
+  width: 100%;
+  margin-top: 40px; /* Aumentando a distância entre o último post e o botão */
+  margin-bottom: 40px; /* Distância maior entre o botão e o footer */
+}
+
+/* Estilo do botão */
+.load-more-container .btn {
+  background-color: #6c757d;  /* Cor discreta (cinza) */
+  color: white;
+  padding: 8px 16px;  /* Botão menor */
+  font-size: 1rem;  /* Fonte menor */
+  border-radius: 30px;  /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transition: all 0.3s ease;  /* Transições suaves para interação */
+  text-transform: none;
+}
+
+.load-more-container .btn:hover {
+  background-color: #5a6268; /* Cor de fundo mais escura no hover */
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);  /* Sombra mais forte */
+  transform: translateY(-3px);  /* Leve elevação */
+}
+
+.load-more-container .btn:active {
+  transform: translateY(0);  /* Reverte a elevação ao clicar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais suave no click */
+}
