@@ -13,86 +13,90 @@ import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component"
   standalone: true,
   imports: [CommonModule, SharedModule, RouterModule, BlogLayoutComponent],
   templateUrl: './posts-list.component.html',
-  styleUrl: './posts-list.component.scss'
+  styleUrls: ['./posts-list.component.scss']
 })
-export class PostsListComponent implements OnInit{
+export class PostsListComponent implements OnInit {
 
   lastVisible: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData> | null = null;
 
-  hasMoreCults: boolean = true; 
+  hasMorePosts: boolean = true;
 
-  newCultForm!: FormGroup
+  newCultForm!: FormGroup;
   posts: Post[] = [];
-  post: Post | undefined;
-
-  filteredPosts: Post[] = [];
-  categories = ['Quadrinhos', 'Tecnologia'];
-  selectedCategory: string | null = null; // Armazena a categoria selecionada
-
+  filteredPosts: Post[] = [];  // Lista de posts filtrados
+  selectedCategory: string = '';  // Categoria selecionada
+  isDropdownOpen: boolean = false;
 
   constructor(private service: PublicPostsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.findCults()
+    this.findPosts(); // Carrega posts ao inicializar o componente
   }
 
-
-  async findCults(limit: number = 5) {
+  // Método para buscar posts
+  async findPosts(limit: number = 6) {
     try {
       const { documents, lastVisible } = await this.service.findData(this.lastVisible, limit);
+
       if (documents && documents.length > 0) {
         this.posts = [...this.posts, ...documents];
         this.lastVisible = lastVisible;
-        
-        // Atualiza `filteredPosts` para exibir os últimos 6 posts de todas as categorias se nenhuma categoria for selecionada
-        this.updateFilteredPosts();
-        this.hasMoreCults = true;
+
+        this.updateFilteredPosts();  // Atualiza os posts filtrados
+        this.hasMorePosts = true;
       } else {
         console.log('Nenhum documento encontrado');
-        this.hasMoreCults = false;
+        this.hasMorePosts = false; 
       }
     } catch (error) {
       console.error('Erro ao buscar documentos:', error);
     }
   }
 
+  // Método para carregar mais posts
   async loadMorePosts(limit: number) {
     try {
       if (this.lastVisible) {
-        await this.findCults(limit);
+        await this.findPosts(limit);
       }
     } catch (error) {
-      console.error('Erro ao carregar mais cultos:', error);
+      console.error('Erro ao carregar mais posts:', error);
     }
   }
 
+  // Método para exibir os detalhes do post
   async showDetails(id: string) {
     try {
       this.router.navigate(['/blog/post/read/', id]);
     } catch (error) {
       console.error('Erro ao buscar documento:', error);
-    }    
+    }
   }
 
+  // Método para limitar a quantidade de palavras exibidas no conteúdo do post
   limitWords(content: string, limit: number = 20): string {
     if (!content) return '';
     const words = content.split(' ');
     return words.length > limit ? words.slice(0, limit).join(' ') + '...' : content;
   }
 
-  filterByCategory(category: string): void {
-    this.filteredPosts = this.posts.filter(post => post.category === category);
-  }
-
+  // Método que atualiza os posts filtrados
   updateFilteredPosts() {
-    if (this.selectedCategory) {
-      // Se houver uma categoria selecionada, filtra os posts para mostrar apenas os dessa categoria
-      this.filteredPosts = this.posts.filter(post => post.category === this.selectedCategory);
+    if (this.selectedCategory === '') {
+      this.filteredPosts = [...this.posts];  // Se não houver categoria selecionada, mostra todos os posts
     } else {
-      // Caso contrário, mostra os 6 posts mais recentes de qualquer categoria
-      this.filteredPosts = this.posts.slice(-6);
+      this.filteredPosts = this.posts.filter(post => post.category === this.selectedCategory);  // Filtra pelos posts da categoria selecionada
     }
   }
 
+  // Método para filtrar os posts pela categoria selecionada
+  filterPostsByCategory(category: string) {
+    this.selectedCategory = category;
+    this.updateFilteredPosts();  // Atualiza os posts filtrados quando a categoria mudar
+  }
 
+  toggleDropdown(event: Event) {
+    event.preventDefault();
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }
