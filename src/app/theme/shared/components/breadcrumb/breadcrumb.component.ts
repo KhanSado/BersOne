@@ -45,8 +45,8 @@ export class BreadcrumbComponent {
         const activeLink = router.url;
         const breadcrumbList = this.filterNavigation(this.navigations, activeLink);
         this.navigationList = breadcrumbList;
-        const title = breadcrumbList[breadcrumbList.length - 1]?.title || 'Welcome';
-        this.titleService.setTitle(title + ' | Ide e pregai o evangelho');
+        const title = breadcrumbList[breadcrumbList.length - 1]?.title || 'Bem Vindo';
+        this.titleService.setTitle(title + ' | Explore o Extraordinário');
       }
     });
   }

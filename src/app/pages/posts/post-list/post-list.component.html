@@ -1,1 +1,34 @@
-<p>post-list works!</p>
+<div class="col-xl-12">
+    <app-card cardTitle="Cultos" [options]="false" blockClass="table-border-style">
+      <div class="table-responsive">
+        <table class="table table-styling">
+          <thead>
+            <tr class="table-primary">
+              <th>Titulo</th>
+              <th>Data</th>
+              <th>Autor</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let post of posts">
+              <td>{{ post.title }}</td>
+              <td>{{ post.data }}</td>
+              <td>{{ post.autor }}</td>
+              <td>
+                <button class="btn btn-light-primary" (click)="showDetails(post.id)"> ver </button> 
+                <button class="btn btn-light-secondary" (click)="showDetails(post.id)"> editar </button> 
+                <button class="btn btn-light-danger" (click)="deletePost(post.id)"> excluir </button> 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div *ngIf="hasMorePosts">
+        <button class="btn btn-light-primary" (click)="loadMorePosts(5)"> Mais </button> 
+      </div>
+  
+    </app-card>
+  </div>
+  
