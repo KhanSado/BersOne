@@ -1,0 +1,63 @@
+/* Estiliza o rótulo */
+label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Editor Quill Container */
+  .editor-container {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 350px;
+  }
+  
+  /* Barra de ferramentas personalizada */
+  .ql-toolbar {
+    background-color: #f8f9fa;
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  /* Ícones da barra de ferramentas */
+  .ql-toolbar .ql-formats button {
+    color: #6c757d;
+    background: none;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .ql-toolbar .ql-formats button:hover {
+    color: #007bff;
+    background-color: #e9ecef;
+    border-radius: 4px;
+  }
+  
+  /* Campo de texto do editor */
+  .ql-container {
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #212529;
+    padding: 15px;
+    min-height: 300px;
+    border: none;
+  }
+  
+  /* Botão de Postar */
+  button.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  

@@ -8,6 +8,7 @@ import { PublicPostsService } from '../posts-service/posts.service';
 import firebase from 'firebase/compat/app';
 import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
 import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class PostsListComponent implements OnInit {
   selectedCategory: string = '';  // Categoria selecionada
   isDropdownOpen: boolean = false;
 
-  constructor(private service: PublicPostsService, private router: Router, private analytics: AngularFireAnalytics) { }
+  constructor(private service: PublicPostsService, private router: Router, private analytics: AngularFireAnalytics, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.trackPageView()
@@ -109,5 +110,9 @@ export class PostsListComponent implements OnInit {
   toggleDropdown(event: Event) {
     event.preventDefault();
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  getSanitizedContent(content: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content);
   }
 }

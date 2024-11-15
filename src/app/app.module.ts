@@ -31,6 +31,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot() // Configurações padrão
   ],
   providers: [
     ScreenTrackingService  // Rastreia automaticamente as mudanças de tela

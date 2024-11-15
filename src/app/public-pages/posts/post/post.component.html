@@ -17,9 +17,11 @@
       </div>
       
       <!-- Conteúdo do Post -->
+      <!-- Conteúdo do Post -->
       <div class="post-content">
-        <p class="fs-5 lh-lg">{{ post?.content }}</p>
+        <p class="fs-5 lh-lg" [innerHTML]="post?.content"></p>
       </div>
+
     </div>
     
   </app-blog-layout>

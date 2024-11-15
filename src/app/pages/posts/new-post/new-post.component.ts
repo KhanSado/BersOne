@@ -4,17 +4,32 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PostService } from '../post-service.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-new-post',
   standalone: true,
-  imports: [CommonModule, SharedModule, RouterModule],
+  imports: [CommonModule, SharedModule, RouterModule, QuillModule],
   templateUrl: './new-post.component.html',
   styleUrl: './new-post.component.scss'
 })
 export class NewPostComponent implements OnInit{
 
   newPostForm!: FormGroup
+
+  editorModules = {
+    toolbar: [
+      [{ header: [1, 2, 3, false] }],
+      // Estilos de texto
+      ['bold', 'italic', 'underline', 'strike'], 
+      // Listas
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      // Links e Imagens
+      ['link', 'image'],
+      // Limpar formatação
+      ['clean']
+    ]
+  };
 
   constructor(private service: PostService) { }
 

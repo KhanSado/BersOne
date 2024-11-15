@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
 import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
 import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -20,8 +21,9 @@ export class PostComponent implements OnInit {
   id!: string;
   post: Post | undefined;
   cards: Card[] = [];
+  sanitizedContent: SafeHtml | undefined;
 
-  constructor(private route: ActivatedRoute, private service: PublicPostsService,  private analytics: AngularFireAnalytics) {
+  constructor(private route: ActivatedRoute, private service: PublicPostsService,  private analytics: AngularFireAnalytics, private sanitizer: DomSanitizer) {
   }
 
   trackPageView(postId: string): void {
@@ -41,6 +43,9 @@ export class PostComponent implements OnInit {
     try {
       const post = await this.service.findPostById(id);
       this.post = post;
+      if (post?.content) {
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(post.content);
+      }
     } catch (error) {
       console.error('Erro ao buscar documento:', error);
     }    

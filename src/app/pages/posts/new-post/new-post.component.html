@@ -1,40 +1,75 @@
 <div class="col-xl-12">
-    <app-card cardTitle="Novo Post" [options]="false" blockClass="table-border-style">
-      <form [formGroup]="newPostForm" #formDir = "ngForm">
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="inputData">Data</label>
-            <input type="date" class="form-control" formControlName="data" id="inputData" placeholder="Data de Postagem" />
-          </div>
+  <app-card cardTitle="Novo Post" [options]="false" blockClass="table-border-style">
+    <form [formGroup]="newPostForm" #formDir="ngForm">
+      <div class="row mb-3">
+        <div class="form-group col-md-6">
+          <label for="inputData">Data</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="data"
+            id="inputData"
+            placeholder="Data de Postagem"
+          />
+        </div>
 
-          <div class="form-group col-md-6">
-            <label for="inputData">Categoria</label>
-            <input type="text" class="form-control" formControlName="category" id="inputCategory" placeholder="Categoria" />
+        <div class="form-group col-md-6">
+          <label for="inputCategory">Categoria</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="category"
+            id="inputCategory"
+            placeholder="Categoria"
+          />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="form-group col-md-6">
+          <label for="inputAutor">Autor</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="autor"
+            id="inputAutor"
+            placeholder="Autor"
+          />
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="inputTitle">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="title"
+            id="inputTitle"
+            placeholder="Título"
+          />
+        </div>
+      </div>
+
+      <!-- Editor de texto -->
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="content">Conteúdo</label>
+          <div class="editor-container">
+            <quill-editor
+            [(ngModel)]="content"
+            [modules]="editorModules"
+            placeholder="Escreva algo incrível..."
+            formControlName="content"
+            style="height: 300px; width: 100%; height: 100%;">
+          </quill-editor>
           </div>
         </div>
-      
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label for="inputPregador">Autor</label>
-            <input type="text" class="form-control" formControlName="autor" id="inputAutor" placeholder="Autor" />
-          </div>
-      
-          <div class="form-group col-md-6">
-            <label for="tema">Titulo</label>
-            <input type="text" class="form-control" formControlName="title" id="inputTitle" placeholder="Titulo" />
-          </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-md-12 text-right">
+          <button (click)="registeNewPost()" class="btn btn-primary">Postar</button>
         </div>
-      
-       
-      
-        <div class="row">
-            <div class="form-group col-md-12">
-              <label for="inputQtdAdultos">Conteúdo</label>
-              <textarea class="form-control" id="content" name="content" rows="15" cols="33" formControlName="content" placeholder="Conteúdo da sua reunião"></textarea>
-            </div>
-          </div>
-        <button (click)="registeNewPost()" class="btn btn-primary">Cadastrar</button>
-      </form>
-    </app-card>
-  </div>
-  
+      </div>
+    </form>
+  </app-card>
+</div>
