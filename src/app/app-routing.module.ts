@@ -22,8 +22,7 @@ const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent),
         canActivate: [AuthGuard, RoleGuard],
-        data: { roles: ['admin', 'ebd', 'cult', 'praise'] } // Adicione as roles permitidas aqui
-
+        data: { roles: ['admin'] }
       },
  
 
@@ -77,6 +76,15 @@ const routes: Routes = [
       {
         path: 'blog/home',
         loadComponent: () => import('./public-pages/posts/posts-list/posts-list.component').then(m => m.PostsListComponent)
+      },
+
+      {
+        path: 'blog/service-terms',
+        loadComponent: () => import('./public-pages/legals/service-terms/service-terms/service-terms.component').then(m => m.ServiceTermsComponent)
+      },
+      {
+        path: 'blog/privacity-police',
+        loadComponent: () => import('./public-pages/legals/privacity-police/privacity-police/privacity-police.component').then(m => m.PrivacityPoliceComponent)
       }
     ]
   }

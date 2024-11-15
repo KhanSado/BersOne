@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Importar CommonModule
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '../theme/shared/shared.module';
 
 @Component({
   selector: 'app-blog-layout',
   standalone: true,
-  imports: [CommonModule],  // Adicione CommonModule aqui
+  imports: [CommonModule, SharedModule, RouterModule],  // Adicione CommonModule aqui
   templateUrl: './blog-layout.component.html',
   styleUrls: ['./blog-layout.component.scss']
 })
