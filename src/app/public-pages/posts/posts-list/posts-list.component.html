@@ -23,17 +23,21 @@
     <div class="row">
       <div class="col-md-4 mb-4" *ngFor="let post of filteredPosts">
         <div class="card h-100 shadow-lg border-light rounded">
-          <div class="card-header bg-primary text-white">
-            <h5 class="card-title text-uppercase font-weight-bold" style="font-size: 1.5rem; letter-spacing: 1px; color: #ffdd57; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+          <div class="card-header bg-primary text-white styled-card-header">
+            <h5 class="card-title text-uppercase font-weight-bold">
               {{ post.title }}
             </h5>
           </div>
           <div class="card-body">
-            <p class="card-text text-muted" style="font-size: 1rem;">{{ limitWords(post.content, 20) }}...</p>
-            <p class="card-text text-muted small">Por: <strong>{{ post.autor }}</strong> | Categoria: {{ post.category }}</p>
+            <p class="card-text text-muted" style="font-size: 1rem;">
+              {{ limitWords(post.content, 20) }}
+            </p>
+            <p class="card-text text-muted small">
+              Por: <strong>{{ post.autor }}</strong> | Categoria: {{ post.category }}
+            </p>
             <button class="btn btn-primary mt-3 w-100" (click)="showDetails(post.id)">Ler mais</button>
           </div>
-        </div>
+        </div>        
       </div>
     </div>
 
