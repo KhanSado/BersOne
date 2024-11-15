@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Card } from 'src/app/models/Card';
@@ -7,23 +7,22 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { PublicPostsService } from '../posts-service/posts.service';
 import { BlogLayoutComponent } from "../../../blog-layout/blog-layout.component";
 import { AngularFireAnalytics } from '@angular/fire/compat/analytics';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
   standalone: true,
   imports: [CommonModule, SharedModule, RouterModule, BlogLayoutComponent],
   templateUrl: './post.component.html',
-  styleUrl: './post.component.scss'
+  styleUrl: './post.component.scss',
+  providers: [DatePipe]
 })
 export class PostComponent implements OnInit {
 
   id!: string;
   post: Post | undefined;
   cards: Card[] = [];
-  sanitizedContent: SafeHtml | undefined;
 
-  constructor(private route: ActivatedRoute, private service: PublicPostsService,  private analytics: AngularFireAnalytics, private sanitizer: DomSanitizer) {
+  constructor(private route: ActivatedRoute, private service: PublicPostsService,  private analytics: AngularFireAnalytics) {
   }
 
   trackPageView(postId: string): void {
@@ -35,6 +34,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') ?? '';
+    console.log('ID:', this.id);
     this.showDetails(this.id)
     this.trackPageView(this.id)
   }
@@ -43,9 +43,7 @@ export class PostComponent implements OnInit {
     try {
       const post = await this.service.findPostById(id);
       this.post = post;
-      if (post?.content) {
-        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(post.content);
-      }
+      console.log(this.post);
     } catch (error) {
       console.error('Erro ao buscar documento:', error);
     }    

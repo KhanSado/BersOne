@@ -8,7 +8,7 @@
       <div class="post-meta text-muted mb-4">
         <span class="me-2">Escrito por <strong>{{ post?.autor }}</strong></span>
         |
-        <span class="ms-2">Publicado em {{ post?.data }}</span>
+        <span class="ms-2">Publicado em {{ post?.data | date: 'd' }} de {{ post?.data | date: 'MMMM' }} de {{ post?.data | date: 'yyyy' }}</span>
       </div>
       
       <!-- Categoria do Post -->
