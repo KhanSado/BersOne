@@ -1,0 +1,40 @@
+<app-blog-layout>
+
+    <div class="contact-container">
+        <h1>Contato</h1>
+        <p>Se você tiver dúvidas, sugestões ou quiser entrar em contato conosco, preencha o formulário abaixo:</p>
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <label for="name">Nome</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                ngModel 
+                placeholder="Seu nome" 
+                required>
+    
+            <label for="email">E-mail</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                ngModel 
+                placeholder="Seu e-mail" 
+                required>
+    
+            <label for="message">Mensagem</label>
+            <textarea 
+                id="message" 
+                name="message" 
+                ngModel 
+                rows="5" 
+                placeholder="Sua mensagem" 
+                required>
+            </textarea>
+    
+            <button type="submit" [disabled]="!contactForm.form.valid">Enviar</button>
+        </form>
+    </div>
+    
+
+</app-blog-layout>

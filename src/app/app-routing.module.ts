@@ -85,6 +85,15 @@ const routes: Routes = [
       {
         path: 'blog/privacity-police',
         loadComponent: () => import('./public-pages/legals/privacity-police/privacity-police/privacity-police.component').then(m => m.PrivacityPoliceComponent)
+      },
+
+      {
+        path: 'blog/about',
+        loadComponent: () => import('./public-pages/about/about/about.component').then(m => m.AboutComponent)
+      },
+      {
+        path: 'blog/contacts',
+        loadComponent: () => import('./public-pages/contacts/contacts/contacts.component').then(m => m.ContactsComponent)
       }
     ]
   }
