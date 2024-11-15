@@ -40,8 +40,6 @@ export class RoleGuard implements CanActivate {
               const doc = querySnapshot.docs[0];
               const data = doc.data() as UserData | undefined;
               this.userRole = data?.role || null; // Armazena a role do usuário
-
-              console.log(this.userRole);
               
 
               if (!allowedRoles.includes(this.userRole!)) {

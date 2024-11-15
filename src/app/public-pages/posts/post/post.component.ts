@@ -33,7 +33,6 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') ?? '';
-    console.log('ID:', this.id);
     this.showDetails(this.id)
     this.trackPageView(this.id)
   }
@@ -42,7 +41,6 @@ export class PostComponent implements OnInit {
     try {
       const post = await this.service.findPostById(id);
       this.post = post;
-      console.log(this.post);
     } catch (error) {
       console.error('Erro ao buscar documento:', error);
     }    
