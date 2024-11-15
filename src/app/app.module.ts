@@ -30,12 +30,10 @@ import { AngularFireAnalyticsModule, ScreenTrackingService } from '@angular/fire
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpClientModule } from '@angular/common/http';
-import { WordLimitPipe } from './word-limit.pipe';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
-    WordLimitPipe,
     AppComponent,
     AdminComponent,
     GuestComponent,
