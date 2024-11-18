@@ -74,7 +74,7 @@ const routes: Routes = [
         loadComponent: () => import('./public-pages/posts/post/post.component').then(m => m.PostComponent)
       },
       {
-        path: 'blog/',
+        path: 'blog',
         loadComponent: () => import('./public-pages/posts/posts-list/posts-list.component').then(m => m.PostsListComponent)
       },
 
