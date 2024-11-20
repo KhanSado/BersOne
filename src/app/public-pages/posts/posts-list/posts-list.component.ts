@@ -46,7 +46,7 @@ export class PostsListComponent implements OnInit {
   }
   
   // Método para buscar posts
-  async findPosts(limit: number = 6) {
+  async findPosts(limit: number = 20) {
     try {
       const { documents, lastVisible } = await this.service.findData(this.lastVisible, limit);
 
